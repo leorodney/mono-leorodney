@@ -5,7 +5,6 @@ import { Request, Response } from 'express';
  */
 export const authorizationRoute = (req: Request, res: Response)=>{
     try{
-        console.log(req.session)
         if(!req.session.user?.authenticated){
             return res.status(401).json({error: 'Not authenticated', ok: false});
         }
