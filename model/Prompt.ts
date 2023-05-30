@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import { Schema, model } from 'mongoose';
 
-const Prompt = new mongoose.Schema({
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+const Prompt = new Schema({
+    author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     value: { type: String, required: true },
     img: { type: String, required: true },
     likes: { type: Number, default: 0 },
@@ -10,4 +10,4 @@ const Prompt = new mongoose.Schema({
     timestamps: true
 });
 
-export default mongoose.model("Prompt", Prompt);
+export default model("Prompt", Prompt);
