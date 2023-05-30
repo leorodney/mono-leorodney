@@ -20,7 +20,7 @@ export const promptRoute = async (req: Request, res: Response)=>{
             return res.status(401).json({error: 'Not authenticated', ok: false});
         }
         const uploadResponse = await cloudinary.uploader.upload(img, { folder: process.env.CLOUDINARY_FOLDER as string });
-        const newPrompt = await Prompt.create({ author: req.session?.user.uid, value, img: uploadResponse.secure_url });
+        const newPrompt = await Prompt.create({ uid: req.session?.user.uid, author: req.session?.user.username, value, img: uploadResponse.secure_url });
         res.status(201).json(newPrompt);
     }
     catch(error){
