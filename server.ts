@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { authorizationRoute } from './routes/auth';
 import { registerRoute } from './routes/register';
 import { loginRoute } from './routes/login';
+import { logoutRoute } from "./routes/logout";
 import { productionRoute } from "./routes/production";
 import { promptifyRoute } from "./routes/promptify";
 import { promptsRoute, userPromptsRoute } from "./routes/prompts";
@@ -51,6 +52,7 @@ mongoConnect(process.env.MONGODB_URL as string, process.env.MONGODB_DB as string
 server.get("/", authorizationRoute);
 server.post(["/signin", "/login"], loginRoute);
 server.post(["/signup", "/register"], registerRoute);
+server.get("/logout", logoutRoute);
 // production
 server.post("/production", productionRoute);
 server.get("/promptify", promptifyRoute);
