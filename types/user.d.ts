@@ -1,7 +1,18 @@
-import mongoose from "mongoose";
+import { Types } from "mongoose";
+
+declare global {
+    namespace Express {
+        interface SessionData {
+            user: SessionUser;
+        }
+    }
+};
 
 export type SessionUser = {
-    uid: mongoose.Types.ObjectId;
-    username: string;
     authenticated: boolean;
-}
+    uid: Types.ObjectId;
+    username: string;
+    email: string;
+    profilePicture: string;
+    joined: Date;
+};

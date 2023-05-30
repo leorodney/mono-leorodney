@@ -17,11 +17,6 @@ export const registerRoute = async (req: Request, res: Response)=>{
 
         req.session.user = {
             authenticated: true,
-            username: user.username,
-            uid: user._id
-        };
-
-        const USER = {
             uid: user._id,
             username: user.username,
             email: user.email,
@@ -30,7 +25,7 @@ export const registerRoute = async (req: Request, res: Response)=>{
         };
 
         user.save();
-        return res.status(201).json({user: USER, message: 'User created successfully', ok: true});
+        return res.status(201).json({user: req.session.user, message: 'User created successfully', ok: true});
     }
     catch(error){
         console.error(error);
