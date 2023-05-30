@@ -7,35 +7,27 @@ on:
     branches: [ "main" ]
 
 jobs:
-  Monolithic-CI:
-  
+  monolithic-server:
+
     runs-on: ubuntu-latest
+    
+    defaults:
+       run:
+         working-directory: ./
 
     strategy:
       matrix:
         node-version: [18.x]
-        folders: ["client", "server"]
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          cache-dependency-path: ${{ matrix.folders }}/package-lock.json
-
-      - name: Install Dependencies In ${{ matrix.folders }}
-        working-directory: ${{ matrix.folders }}
-        run: npm ci
-
-      - name: Build ${{ matrix.folders }}
-        working-directory: ${{ matrix.folders }}
-        run: npm run build --if-present
-
-      - name: Test ${{ matrix.folders }}
-        working-directory: ${{ matrix.folders }}
-        run: npm test --if-present
-      
+    # Server Dependencies Compatibility
+    - uses: actions/checkout@v3
+    - name: Node>${{ matrix.node-version }} Mono-Server Dependencies Compatibility
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './package-lock.json'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test --if-present
