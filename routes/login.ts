@@ -24,8 +24,16 @@ export const loginRoute = async (req: Request, res: Response)=>{
             username: user.username,
             uid: user._id
         };
+
+        const USER = {
+            uid: user._id,
+            username: user.username,
+            email: user.email,
+            profilePicture: user.profilePicture,
+            joined: user.createdAt
+        }
         
-        return res.status(200).json({user: { uid: user._id, username: user.username }, message: 'Login successful', ok: true});
+        return res.status(200).json({user: USER, message: 'Login successful', ok: true});
     }
     catch(error){
         console.log(error);

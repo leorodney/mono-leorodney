@@ -21,8 +21,16 @@ export const registerRoute = async (req: Request, res: Response)=>{
             uid: user._id
         };
 
+        const USER = {
+            uid: user._id,
+            username: user.username,
+            email: user.email,
+            profilePicture: user.profilePicture,
+            joined: user.createdAt
+        };
+
         user.save();
-        return res.status(201).json({user: { uid: user._id, username: user.username }, message: 'User created successfully', ok: true});
+        return res.status(201).json({user: USER, message: 'User created successfully', ok: true});
     }
     catch(error){
         console.log(error);
