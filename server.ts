@@ -6,7 +6,7 @@ import { registerRoute } from './routes/register';
 import { loginRoute } from './routes/login';
 import { productionRoute } from "./routes/production";
 import { promptifyRoute } from "./routes/promptify";
-import { promptsRoute } from "./routes/prompts";
+import { promptsRoute, userPromptsRoute } from "./routes/prompts";
 import { promptRoute } from "./routes/newPrompt";
 // Micro Database connection
 import { mongoConnect } from "./database/connect";
@@ -57,4 +57,4 @@ server.get("/promptify", promptifyRoute);
 // prompts
 server.get("/prompts", promptsRoute);
 server.post("/prompts/new", promptRoute);
-
+server.get("/prompts/mine/:uid", userPromptsRoute);
