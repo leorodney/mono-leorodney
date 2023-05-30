@@ -36,7 +36,7 @@ export const loginRoute = async (req: Request, res: Response)=>{
         return res.status(200).json({user: USER, message: 'Login successful', ok: true});
     }
     catch(error){
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 };

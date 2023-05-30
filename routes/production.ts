@@ -23,7 +23,7 @@ export const productionRoute = async (req: Request, res: Response)=>{
 
         res.status(200).json({img: dalleResponse.data.data[0].b64_json});
     }catch(error){
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 };

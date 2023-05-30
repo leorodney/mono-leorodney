@@ -20,7 +20,7 @@ export const promptifyRoute = async (req: Request, res: Response)=>{
         console.log("\t[ SURPRISE ME PROMPT ]: ", surprisemePrompt);
     }
     catch(error){
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 };

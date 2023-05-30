@@ -24,7 +24,7 @@ export const promptRoute = async (req: Request, res: Response)=>{
         res.status(201).json(newPrompt);
     }
     catch(error){
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 };

@@ -13,7 +13,7 @@ export const authorizationRoute = (req: Request, res: Response)=>{
         return res.status(200).json({user: { uid, username }, message: 'Already logged in', error: "", ok: true});
     }
     catch(error){
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 };

@@ -23,7 +23,7 @@ export const userPromptsRoute = async (req: Request, res: Response)=>{
         res.status(200).json(userPrompts);
 
     } catch(error){
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     };
 }
