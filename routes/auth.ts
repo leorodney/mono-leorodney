@@ -8,8 +8,7 @@ export const authorizationRoute = (req: Request, res: Response)=>{
         if(!req.session.user?.authenticated){
             return res.status(401).json({error: 'Not authenticated', ok: false});
         }
-        const { username, uid } = req.session.user;
-        return res.status(200).json({user: { uid, username }, message: 'Already logged in', error: "", ok: true});
+        return res.status(200).json({user: req.session.user, message: 'Already logged in', error: "", ok: true});
     }
     catch(error){
         console.error(error);
