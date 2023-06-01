@@ -8,7 +8,7 @@ import { logoutRoute } from "./routes/logout";
 import { productionRoute } from "./routes/production";
 import { promptifyRoute } from "./routes/promptify";
 import { promptsRoute, userPromptsRoute } from "./routes/prompts";
-import { promptRoute } from "./routes/newPrompt";
+import { downloadPromptRoute, likePromptRoute, promptRoute } from "./routes/prompt";
 // Micro Database connection
 import { mongoConnect } from "./database/connect";
 // Configs
@@ -60,3 +60,6 @@ server.get("/promptify", promptifyRoute);
 server.get("/prompts", promptsRoute);
 server.post("/prompts/new", promptRoute);
 server.get("/prompts/mine/:uid", userPromptsRoute);
+// prompt likes and downloads
+server.post("/prompt/likes", likePromptRoute);
+server.post("/prompt/downloads", downloadPromptRoute);

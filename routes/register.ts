@@ -18,6 +18,7 @@ export const registerRoute = async (req: Request, res: Response)=>{
         req.session.user = {
             authenticated: true,
             uid: user._id,
+            name: user.firstname + " " + user.lastname,
             username: user.username,
             email: user.email,
             profilePicture: user.profilePicture,

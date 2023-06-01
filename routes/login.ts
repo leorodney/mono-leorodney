@@ -19,21 +19,12 @@ export const loginRoute = async (req: Request, res: Response)=>{
         req.session.user = {
             authenticated: true,
             uid: user._id,
+            name: user.firstname + " " + user.lastname,
             username: user.username,
             email: user.email,
             profilePicture: user.profilePicture,
             joined: user.createdAt
         };
-
-        const USER = {
-            uid: user._id,
-            username: user.username,
-            email: user.email,
-            profilePicture: user.profilePicture,
-            joined: user.createdAt
-        }
-
-
         
         return res.status(200).json({user: req.session.user, message: 'Login successful', ok: true});
     }
